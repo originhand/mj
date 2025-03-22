@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>到访系统-计划</title>
+    <style>
+        @import url(/css/public.css);
+        @import url(/css/login.css);
+        @import url(/css/plan.css);
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="bgc"></div>
+        <div style=" position:relative; z-index: 999;">
+            <div class="header">
+                <img onclick="back()" src="/images/back.png">
+                <div>访客计划</div>
+            </div>
+            <div>
+                <div class="tips_1">
+                    <img src="/images/ts.png">
+                    访客信息
+                </div>
+                <div class="tips_2">
+                    <div>请审核到访的访客信息。</div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 5%;">
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/ren_2.png" alt="">
+                        蔡徐坤（1人）
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="150xxxxxx20">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <img src="/images/phone.png" alt="">
+                        来访单位
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="樱花科技有限公司">
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 5%;">
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/danwei.png" alt="">
+                        到访时间
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="1980/8/8 18:08">
+                    </div>
+                </div>
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/ren.png" alt="">
+                        被访问人员姓名
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="蒋明健">
+                    </div>
+                </div>
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/time.png" alt="">
+                        拜访事由
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="面试">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <img src="/images/ren_2.png" alt="">
+                        审核状态
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="未审核">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <button id="statusButton" class="status-button">通过</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+     // 获取按钮元素
+     const button = document.getElementById('statusButton');
+
+// 添加点击事件监听器
+button.addEventListener('click', function() {
+    // 切换按钮文本
+    if (button.textContent === '通过') {
+        button.textContent = '已通过';
+        button.classList.add('passed'); // 添加通过后的样式
+    } else {
+        button.textContent = '通过';
+        button.classList.remove('passed'); // 移除通过后的样式
+    }
+});
+function back(){
+        window.history.go(-1);
+    }
+</script>
+</html>

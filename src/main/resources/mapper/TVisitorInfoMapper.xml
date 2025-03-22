@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jmj.mapper.TVisitorInfoMapper">
+
+    <resultMap id="BaseResultMap" type="com.jmj.entity.TVisitorInfo">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="visitorName" column="visitor_name" jdbcType="VARCHAR"/>
+            <result property="visitorTelNumber" column="visitor_tel_number" jdbcType="VARCHAR"/>
+            <result property="company" column="company" jdbcType="VARCHAR"/>
+            <result property="nums" column="nums" jdbcType="INTEGER"/>
+            <result property="visitorTime" column="visitor_time" jdbcType="TIMESTAMP"/>
+            <result property="empId" column="emp_id" jdbcType="INTEGER"/>
+            <result property="reason" column="reason" jdbcType="INTEGER"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="createBy" column="create_by" jdbcType="VARCHAR"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+            <result property="updateBy" column="update_by" jdbcType="INTEGER"/>
+            <result property="status" column="status" jdbcType="INTEGER"/>
+            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+            <result property="deleted" column="deleted" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,visitor_name,visitor_tel_number,
+        company,nums,visitor_time,
+        emp_id,reason,create_time,
+        create_by,update_time,update_by,
+        status,remark,deleted
+    </sql>
+</mapper>

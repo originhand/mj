@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>到访系统-拜访</title>
+    <style>
+        @import url(/css/public.css);
+        @import url(/css/login.css);
+        @import url(/css/visit.css);
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="bgc"></div>
+        <div style=" position:relative; z-index: 999;">
+            <div class="header">
+                <img onclick="back()" src="/images/back.png">
+                <div>访客信息录入</div>
+            </div>
+            <div>
+                <div class="tips_1">
+                    <img src="/images/ts.png">
+                    访客须知
+                </div>
+                <div class="tips_2">
+                    <div>01</div>
+                    <div>进入公司时请您扫描二维码登记拜访信息，请您在接待人员的指示或带领下，前往您的接洽人员处。</div>
+                </div>
+                <div class="tips_2">
+                    <div>02</div>
+                    <div style="padding-top: 7px;">如无本公司人员带领，请避免在公司区内随意走动。</div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 5%;">
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/ren_2.png" alt="">
+                        姓名
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入员工姓名">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div>
+                        <img src="/images/phone.png" alt="">
+                        电话
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入员工电话">
+                    </div>
+                </div>
+            </div>
+            <div class="card" style="margin-top: 5%;">
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/danwei.png" alt="">
+                        来访公司
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入来访公司">
+                    </div>
+                </div>
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/ren.png" alt="">
+                        到访人数
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入到访人数">
+                    </div>
+                </div>
+                <div class="row bottom_line">
+                    <div>
+                        <img src="/images/time.png" alt="">
+                        到访时间
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入到访时间">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <img src="/images/ren_2.png" alt="">
+                        只被访问人员姓名
+                        <span>*</span>
+                    </div>
+                    <div>
+                        <input type="text" placeholder="请输入只被访问人员姓名">
+                    </div>
+                </div>
+            </div>
+            <div class="card shiyou" style="margin-top: 5%;">
+                <div>
+                    <img src="" alt="">
+                    拜访事由
+                </div>
+                <div>
+                    <div id="sub_1" onclick="changeSubjectMatter(1)" class="active">商务</div>
+                    <div id="sub_2" onclick="changeSubjectMatter(2)">面试</div>
+                    <div id="sub_3" onclick="changeSubjectMatter(3)">私人</div>
+                    <div id="sub_4" onclick="changeSubjectMatter(4)">其他</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let subjectId = 1;
+    function changeSubjectMatter(index) {
+        for (let i = 1; i <= 4; i++) {
+            if (index == i) {
+                subjectId = i;
+                document.getElementById("sub_" + i).className = 'active';
+            } else {
+                document.getElementById("sub_" + i).className = '';
+            }
+        }
+    }
+    function back(){
+        window.history.go(-1);
+    }
+</script>
+</html>
