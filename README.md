@@ -30,4 +30,4 @@ src/
 │   └── resources/
 └── test/
     └── java/
-``` 
+```
