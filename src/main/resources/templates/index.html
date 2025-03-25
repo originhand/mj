@@ -21,9 +21,7 @@
         <!-- 按钮区域 -->
         <div class="btn-container">
             <div class="btn" onclick="goLogin(1)">登录</div>
-            <form id="visitForm" method="post" th:action="@{/visitor/visit}">
-                <div class="btn" onclick="document.getElementById('visitForm').submit()">拜访</div>
-            </form>
+            <div class="btn" onclick="goLogin(2)">拜访</div>
         </div>
 
         <!-- 底部文字 -->
@@ -38,6 +36,9 @@
             switch (type) {
                 case 1:
                     location.href = '/emp/login';
+                    break;
+                case 2:
+                    location.href = '/visit/visit_page';
                     break;
             }
         }
