@@ -1,29 +1,37 @@
 package com.jmj.controller;
 
 import com.common.ResponseBean;
-import com.common.ResponseEnum;
 import com.jmj.entity.TVisitorInfo;
 import com.jmj.service.TVisitorInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/visitor")
+@RequestMapping("/visit")
 public class VisitorController {
     @Autowired
     private TVisitorInfoService visitorInfoService;
-
-    @PostMapping("/visit")
+    @PostMapping("/doVisit")
     @ResponseBody
-    public ResponseBean visit(TVisitorInfo visitorInfo) {
-        // 确保 visitorInfo 对象的必要字段不为空
-        if (visitorInfo.getVisitorName() == null || visitorInfo.getVisitorTelNumber() == null) {
-            return ResponseBean.error(ResponseEnum.PARAMETER_IS_ABNORMAL);
-        }
-        boolean result = visitorInfoService.save(visitorInfo);
-        return result ? ResponseBean.success() : ResponseBean.error(ResponseEnum.PARAMETER_IS_ABNORMAL);
+    public ResponseBean doVisit(TVisitorInfo visitorInfo){
+        return visitorInfoService.doVisit(visitorInfo);
+    }
+    @GetMapping("/visit_page")
+    public String visitPage(){
+        return "/pages/visit";
+    }
+    @GetMapping("/plan")
+    public String visitList(HttpSession session, Model model){
+        visitorInfoService.visitList(session,model);
+        return "pages/plan";
+    }
+    @GetMapping("/audit/{id}/{type}")
+    @ResponseBody
+    public ResponseBean audit(@PathVariable("id") Integer id, @PathVariable("type") Integer type){
+        return visitorInfoService.audit(id,type);
     }
 }

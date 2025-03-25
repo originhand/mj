@@ -53,3 +53,13 @@
     background-color: #4096FD !important;
     color: #ffffff !important;
 }
+.btn{
+    width:94% ;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 14px;
+    background-color: #4096FD;
+    color: #ffffff;
+    margin-left: 3%;
+}

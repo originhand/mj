@@ -57,7 +57,7 @@
     </div>
 
     <div id="msg_box">
-        <span id="msg">ksjhda</span>
+        <span id="msg"></span>
     </div>
 </body>
 <script>
@@ -91,7 +91,7 @@
                 success(res){
                     if (res.code===0){
                         //登录成功,跳转页面
-                        open(res.msg)
+                        location.href="/visit/plan"
                     }else {
                         open(res.msg)
                     }

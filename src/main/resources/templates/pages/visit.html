@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>到访系统-拜访</title>
-    <style>
-        @import url(/css/public.css);
-        @import url(/css/login.css);
-        @import url(/css/visit.css);
-    </style>
+    <link rel="stylesheet" th:href="@{/css/public.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link rel="stylesheet" th:href="@{/css/visit.css}">
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+    <script th:src="@{/js/public.js}"></script>
 </head>
 <body>
     <div class="main">
         <div class="bgc"></div>
         <div style=" position:relative; z-index: 999;">
             <div class="header">
-                <img onclick="back()" src="/images/back.png">
+                <img onclick="back()" th:src="@{/images/back.png}">
                 <div>访客信息录入</div>
             </div>
             <div>
                 <div class="tips_1">
-                    <img src="/images/ts.png">
+                    <img th:src="@{/images/ts.png}">
                     访客须知
                 </div>
                 <div class="tips_2">
@@ -35,65 +35,65 @@
             <div class="card" style="margin-top: 5%;">
                 <div class="row bottom_line">
                     <div>
-                        <img src="/images/ren_2.png" alt="">
+                        <img th:src="@{/images/ren_2.png}" alt="">
                         姓名
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入员工姓名">
+                        <input id="visitName" type="text" placeholder="请输入访客姓名">
                     </div>
                 </div>
 
                 <div class="row">
                     <div>
-                        <img src="/images/phone.png" alt="">
+                        <img th:src="@{/images/phone.png}" alt="">
                         电话
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入员工电话">
+                        <input id="visitTelNumber" type="text" placeholder="请输入访客电话">
                     </div>
                 </div>
             </div>
             <div class="card" style="margin-top: 5%;">
                 <div class="row bottom_line">
                     <div>
-                        <img src="/images/danwei.png" alt="">
+                        <img th:src="@{/images/danwei.png}" alt="">
                         来访公司
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入来访公司">
+                        <input id="company" type="text" placeholder="请输入来访公司">
                     </div>
                 </div>
                 <div class="row bottom_line">
                     <div>
-                        <img src="/images/ren.png" alt="">
+                        <img th:src="@{/images/ren.png}" alt="">
                         到访人数
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入到访人数">
+                        <input id="num" type="text" placeholder="请输入到访人数">
                     </div>
                 </div>
                 <div class="row bottom_line">
                     <div>
-                        <img src="/images/time.png" alt="">
+                        <img th:src="@{/images/time.png}" alt="">
                         到访时间
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入到访时间">
+                        <input id="visitTime" type="datetime-local" placeholder="请输入到访时间">
                     </div>
                 </div>
                 <div class="row">
                     <div>
-                        <img src="/images/ren_2.png" alt="">
-                        只被访问人员姓名
+                        <img th:src="@{/images/ren_2.png}" alt="">
+                        被访问人员电话
                         <span>*</span>
                     </div>
                     <div>
-                        <input type="text" placeholder="请输入只被访问人员姓名">
+                        <input id="empTelNumber" type="text" placeholder="请输入被访问人员电话">
                     </div>
                 </div>
             </div>
@@ -110,14 +110,20 @@
                 </div>
             </div>
         </div>
+        <div class="btn" onclick="submit()">
+            提交
+        </div>
+    </div>
+    <div id="msg_box">
+        <span id="msg"></span>
     </div>
 </body>
 <script>
-    let subjectId = 1;
+    let reason = 1;
     function changeSubjectMatter(index) {
         for (let i = 1; i <= 4; i++) {
             if (index == i) {
-                subjectId = i;
+                reason = i;
                 document.getElementById("sub_" + i).className = 'active';
             } else {
                 document.getElementById("sub_" + i).className = '';
@@ -126,6 +132,76 @@
     }
     function back(){
         window.history.go(-1);
+    }
+
+    /**
+     * 获取拜访数据
+     * 前端数据非空检验
+     */
+    function getVisitData() {
+        //访客姓名
+        const visitName=$("#visitName").val()
+        //访客电话
+        const visitTelNumber=$("#visitTelNumber").val();
+        //来访公司
+        const company=$("#company").val();
+        //到访人数
+        const num=$("#num").val();
+        console.log(num)
+        //到访时间
+        const visitorTime=$("#visitTime").val();
+        // 格式化日期时间字符串
+        const date = new Date(visitorTime);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+        //被访人姓名
+        const empTelNumber=$("#empTelNumber").val();
+        //拜访数据非空校验
+        if(visitName==""||visitTelNumber==""||company==""||num==""||visitorTime==""||empTelNumber==""){
+            open("请填写完整信息")
+            return null;
+        }else {
+            //返回访客信息
+            return {
+                visitorName:visitName,
+                visitorTelNumber:visitTelNumber,
+                company,
+                nums:num,
+                visitorTime: formattedTime,
+                empTelNumber,
+                reason
+            }
+        }
+    }
+
+    /**
+     * 提交拜访数据
+     */
+    function submit() {
+        let visitData=getVisitData();
+        if(visitData!=null){
+            //请求后端，保存拜访数据
+            $.ajax({
+                url:"/visit/doVisit",
+                type:"POST",
+                data:visitData,
+                dataType:'json',
+                success(res){
+                    if(res.code===0){
+                        open("保存成功")
+                        // 保存成功后，跳转到计划页面
+                    }else {
+                        open(res.msg)
+                    }
+                }
+            })
+        }
     }
 </script>
 </html>
